@@ -3,9 +3,9 @@ from langchain_community.chat_models import ChatOllama
 from langchain_openai import ChatOpenAI
 from langchain_groq import ChatGroq
 
-from millyLangChain.utils.CustomOllama import Ollama
+from milleLangChain.utils.CustomOllama import Ollama
 
-from millyLangChain.utils import print_helpers as pp
+from milleLangChain.utils import print_helpers as pp
 
 
 class LLM():

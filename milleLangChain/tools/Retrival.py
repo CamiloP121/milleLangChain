@@ -4,7 +4,7 @@ from langchain_community.vectorstores.faiss import (
 import os
 import joblib
 
-from utils import print_helpers as pp
+from milleLangChain.utils import print_helpers as pp
 
 
 class VectorStore:

@@ -4,8 +4,8 @@ from langchain_core.prompts.chat import (
 )
 
 from langchain.chains.combine_documents import create_stuff_documents_chain
-from millyLangChain.utils.helpers import load_prompt
-from millyLangChain.utils import print_helpers as pp
+from milleLangChain.utils.helpers import load_prompt
+from milleLangChain.utils import print_helpers as pp
 
 import time
 

@@ -1,5 +1,5 @@
-from millyLangChain.utils.helpers import load_prompt
-from millyLangChain.utils import print_helpers as pp
+from milleLangChain.utils.helpers import load_prompt
+from milleLangChain.utils import print_helpers as pp
 
 import time
 
