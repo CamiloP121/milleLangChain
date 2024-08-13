@@ -2,9 +2,7 @@ from langchain_community.embeddings.spacy_embeddings import SpacyEmbeddings
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.embeddings import GPT4AllEmbeddings
 
-
-
-from utils import print_helpers as pp
+from milleLangChain.utils import print_helpers as pp
 
 class Embedding():
     def __init__(self, model: str, embedding_type: str = "spacy", key: str = None , debug: bool = False, ) -> None:
