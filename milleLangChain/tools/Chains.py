@@ -5,9 +5,10 @@ import time
 
 
 class LLM_Clasify:
-    def __init__(self, llm, file_context:str, intentions:list, debug:bool = False) -> None:
+    def __init__(self, llm, file_context:str, context: str, intentions:list, debug:bool = False) -> None:
         
-        self.template_contextBot = load_prompt(file = file_context)
+        if file_context: self.template_contextBot = load_prompt(file = file_context)
+        if context: self.template_contextBot = context
         self.intentions = intentions
 
         self.chain = llm | self.template_contextBot
