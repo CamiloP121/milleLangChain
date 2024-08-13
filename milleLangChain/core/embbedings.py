@@ -25,13 +25,13 @@ class Embedding():
         allowed_types = ["spacy", "openia", "gpt4"]
         assert embedding_type in allowed_types, "Embedding type must be one of: " + " or ".join(allowed_types)
 
-        if embedding_type == "spacy":
+        if "spacy" in embedding_type:
             self.model = SpacyEmbeddings(model_name=model)
-        elif embedding_type == "openia":
-            assert key is not None and key != "", "OpenAI API key is required for 'open_ia' embedding type."
-            self.model = OpenAIEmbeddings(openai_api_key = key, model = model)
-        elif embedding_type == "gpt4":
-            self.model = GPT4AllEmbeddings(model_name = model)
+        elif "openia" in embedding_type:
+            assert key is not None and key != "", "OpenAI API key is required for 'openia' embedding type."
+            self.model = OpenAIEmbeddings(openai_api_key=key, model=model)
+        elif "gpt4" in embedding_type:
+            self.model = GPT4AllEmbeddings(model_name=model)
 
         self.name_model = embedding_type
 
