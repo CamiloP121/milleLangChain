@@ -25,6 +25,7 @@ class Ollama(LLM):
 
     model: str
     base_url: str
+    client: Any = None
     debug: bool = False
     """The number of characters from the last message of the prompt to be echoed."""
 
