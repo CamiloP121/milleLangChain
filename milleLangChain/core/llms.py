@@ -26,13 +26,13 @@ class LLM():
             pp.printy("--- LLMs ---")
             print("set: ", llm_type)
 
-      allowed_types = ["ollama", "open_ia", "groq"]
+      allowed_types = ["ollama", "openia", "groq"]
       assert llm_type in allowed_types, "LLMs type must be one of: " + " or ".join(allowed_types)
 
       if "ollama" in llm_type:
          if not model: model = "llama3:8b"
          self.model = Ollama(model=model, base_url=url)
-      elif "open_ia" in llm_type:
+      elif "openia" in llm_type:
          assert key is not None and key != "", "OpenAI API key is required for 'open_ia' llm type."
          if not model: model = "gpt-3.5-turbo-16k"
          self.model = ChatOpenAI(openai_api_key=key, model_name=model, temperature=temperature)
@@ -68,8 +68,8 @@ class LLM():
       try:
          response = self.model.invoke( text )
       except Exception as e:
-          print(e)
-          raise Exception("Error in invoke model")
+            print(e)
+            raise Exception("Error in invoke model")
       
       if return_text_only:
          return response.content
