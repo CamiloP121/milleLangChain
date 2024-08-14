@@ -75,11 +75,10 @@ class LLM():
       
 
       if return_text_only:
-         if self.name_model in "ollama": r = response
+         if "ollama" in self.name_model: r = response
          else: r = response.content
       else: 
-         if self.name_model in "ollama":
-            pp.printy("Warning: Ollama only have text mode")
+         if "ollama" in self.name_model: pp.printy("Warning: Ollama only have text mode")
          r = response
       
       return r
