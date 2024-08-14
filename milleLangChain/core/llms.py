@@ -27,7 +27,8 @@ class LLM():
             print("set: ", llm_type)
 
       allowed_types = ["ollama", "openia", "groq"]
-      assert llm_type in allowed_types, "LLMs type must be one of: " + " or ".join(allowed_types)
+      for allowed in allowed_types:
+         assert allowed in llm_type, "LLMs type must be one of: " + " or ".join(allowed_types)
 
       if "ollama" in llm_type:
          if not model: model = "llama3:8b"

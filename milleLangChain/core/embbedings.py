@@ -23,7 +23,8 @@ class Embedding():
             print("set: ", embedding_type)
 
         allowed_types = ["spacy", "openia", "gpt4"]
-        assert embedding_type in allowed_types, "Embedding type must be one of: " + " or ".join(allowed_types)
+        for allowed in allowed_types:
+            assert allowed in embedding_type, "Embedding type must be one of: " + " or ".join(allowed_types)
 
         if "spacy" in embedding_type:
             self.model = SpacyEmbeddings(model_name=model)
