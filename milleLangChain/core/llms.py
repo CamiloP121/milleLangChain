@@ -27,8 +27,6 @@ class LLM():
             print("set: ", llm_type)
 
       allowed_types = ["ollama", "openia", "groq"]
-      for allowed in allowed_types:
-         assert allowed in llm_type, "LLMs type must be one of: " + " or ".join(allowed_types)
 
       if "ollama" in llm_type:
          if not model: model = "llama3:8b"
@@ -43,6 +41,9 @@ class LLM():
       elif "anthropic" in llm_type:
          assert key is not None and key != "", "Anthropic API key is required for 'anthropic' llm type."
          raise Exception("Not implemented yet Anthropic LLM")
+
+      else: 
+         raise Exception("LLMs type must be one of: " + " or ".join(allowed_types))
 
       self.name_model = llm_type
 

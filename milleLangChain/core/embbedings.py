@@ -23,8 +23,6 @@ class Embedding():
             print("set: ", embedding_type)
 
         allowed_types = ["spacy", "openia", "gpt4"]
-        for allowed in allowed_types:
-            assert allowed in embedding_type, "Embedding type must be one of: " + " or ".join(allowed_types)
 
         if "spacy" in embedding_type:
             self.model = SpacyEmbeddings(model_name=model)
@@ -33,6 +31,9 @@ class Embedding():
             self.model = OpenAIEmbeddings(openai_api_key=key, model=model)
         elif "gpt4" in embedding_type:
             self.model = GPT4AllEmbeddings(model_name=model)
+        
+        else:
+            raise Exception("Embedding type must be one of: " + " or ".join(allowed_types))
 
         self.name_model = embedding_type
 
