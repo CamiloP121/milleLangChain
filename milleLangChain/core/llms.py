@@ -73,8 +73,14 @@ class LLM():
             print(e)
             raise Exception("Error in invoke model")
       
+
       if return_text_only:
-         return response.content
-      else:
-         return response
+         if self.name_model in "ollama": r = response
+         else: r = response.content
+      else: 
+         if self.name_model in "ollama":
+            pp.printy("Warning: Ollama only have text mode")
+         r = response
+      
+      return r
       
