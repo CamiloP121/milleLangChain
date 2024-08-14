@@ -47,3 +47,32 @@ class LLM():
 
       if debug:
          pp.printy("----------------")
+
+   def invoke(self, text, return_text_only=True):
+      """
+      Invokes the language model with the provided text and returns the response.
+      This method sends a text prompt to the language model and returns either the full response 
+      or just the content, depending on the `return_text_only` flag.
+      --------------------------------------------------------------------------
+      Args:
+      ----
+      text (str): The input text or prompt to be processed by the language model.
+      return_text_only (bool, optional): If True, only the text content of the response is returned. 
+                                          If False, the entire response object is returned. Defaults to True.
+
+      Returns:
+      -------
+      str or object: The text content of the response if `return_text_only` is True, otherwise the full 
+                     response object.
+      """
+      try:
+         response = self.model.invoke( text )
+      except Exception as e:
+          print(e)
+          raise Exception("Error in invoke model")
+      
+      if return_text_only:
+         return response.content
+      else:
+         return response
+      
