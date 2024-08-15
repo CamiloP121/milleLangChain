@@ -4,6 +4,15 @@ class SimpleRetriever():
          self.retriever = vectorstore.db.as_retriever(search_type = search_type,
                                  search_kwargs = search_kwargs)
          
+   def invoke(self, text):
+      try:
+         result = self.retriever.invoke(text)
+      except Exception as e:
+         print(e)
+         raise Exception("Error apply retriever search")
+      
+      return result
+         
 class MultiRetriever():
    pass
       
