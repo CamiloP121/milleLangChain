@@ -61,7 +61,7 @@ class VectorStore():
         
         if self.debug: pp.printy("Load Data base....")
         try:
-            if "faiss" in self.vectorstore_type:
+            if "faiss" in self._type:
                 self.db = self.class_vector.from_documents(documents = docs, embbeding = self.embbeding)
         except Exception as e:
             print(e)
@@ -85,7 +85,7 @@ class VectorStore():
         
         if self.debug: pp.printy("Load Data base....")
         try:
-            if "faiss" in self.vectorstore_type:
+            if "faiss" in self._type:
                 self.db = self.class_vector.deserialize_from_bytes(serialized = load_pickle(pkl_path), embbeding = self.embbeding)
         except Exception as e:
             print(e)
