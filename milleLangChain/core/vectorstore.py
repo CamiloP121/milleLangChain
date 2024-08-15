@@ -87,7 +87,9 @@ class VectorStore():
         if self.debug: pp.printy("Load Data base....")
         try:
             if "faiss" in self._type:
-                self.db = self.class_vector.deserialize_from_bytes(serialized = load_pickle(pkl_path), embeddings = self.embedding)
+                self.db = self.class_vector.deserialize_from_bytes(serialized = load_pickle(pkl_path), 
+                                                                   embeddings = self.embedding,
+                                                                   allow_dangerous_deserialization  = True)
         except Exception as e:
             print(e)
             raise Exception("Error load Data base vector store")
