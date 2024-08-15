@@ -1,41 +1,41 @@
-from langchain_community.embbedings.spacy_embbedings import Spacyembbedings
-from langchain_openai import OpenAIembbedings
-from langchain_community.embbedings import GPT4Allembbedings
+from langchain_community.embeddings.spacy_embeddings import Spacyembeddings
+from langchain_openai import OpenAIembeddings
+from langchain_community.embeddings import GPT4Allembeddings
 
 from milleLangChain.utils import print_helpers as pp
 
-class embbeding():
-    def __init__(self, model: str, embbeding_type: str = "spacy", key: str = None , debug: bool = False, ) -> None:
+class embedding():
+    def __init__(self, model: str, embedding_type: str = "spacy", key: str = None , debug: bool = False, ) -> None:
         """
-        Initializes the embbeding class.
+        Initializes the embedding class.
 
         Parameters:
-            embbeding_type (str): Type of embbeding to use, either "spacy" or "openai".
-            key (str): OpenAI API key required if embbeding_type is "openai".
+            embedding_type (str): Type of embedding to use, either "spacy" or "openai".
+            key (str): OpenAI API key required if embedding_type is "openai".
             debug (bool): Flag to enable debug mode. Default is False.
 
         Raises:
-            AssertionError: If embbeding_type is not one of the allowed types.
+            AssertionError: If embedding_type is not one of the allowed types.
         """
 
         if debug: 
-            pp.printy("--- embbeding ---")
-            print("set: ", embbeding_type)
+            pp.printy("--- embedding ---")
+            print("set: ", embedding_type)
 
         allowed_types = ["spacy", "openia", "gpt4"]
 
-        if "spacy" in embbeding_type:
-            self.model = Spacyembbedings(model_name=model)
-        elif "openia" in embbeding_type:
-            assert key is not None and key != "", "OpenAI API key is required for 'openia' embbeding type."
-            self.model = OpenAIembbedings(openai_api_key=key, model=model)
-        elif "gpt4" in embbeding_type:
-            self.model = GPT4Allembbedings(model_name=model)
+        if "spacy" in embedding_type:
+            self.model = Spacyembeddings(model_name=model)
+        elif "openia" in embedding_type:
+            assert key is not None and key != "", "OpenAI API key is required for 'openia' embedding type."
+            self.model = OpenAIembeddings(openai_api_key=key, model=model)
+        elif "gpt4" in embedding_type:
+            self.model = GPT4Allembeddings(model_name=model)
         
         else:
-            raise Exception("embbeding type must be one of: " + " or ".join(allowed_types))
+            raise Exception("embedding type must be one of: " + " or ".join(allowed_types))
 
-        self.name_model = embbeding_type
+        self.name_model = embedding_type
 
         if debug:
             pp.printy("----------------")
