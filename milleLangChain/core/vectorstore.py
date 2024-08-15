@@ -7,7 +7,7 @@ from pathlib import Path
 
 
 class VectorStore():
-    def __init__(self, embbeding: object, vectorstore_type: str = "faiss" , output_path: str = "store" , debug: bool = False, ) -> None:
+    def __init__(self, embedding: object, vectorstore_type: str = "faiss" , output_path: str = "store" , debug: bool = False, ) -> None:
         """
         Initializes the VectorStore class.
         ----------------------------------------------------
@@ -33,13 +33,13 @@ class VectorStore():
             # self.class_vector = Chroma
             raise Exception("Not implemented yet Chroma")
         else:
-            raise Exception("embbeding type must be one of: " + " or ".join(allowed_types))
+            raise Exception("embedding type must be one of: " + " or ".join(allowed_types))
         
         Path(output_path).mkdir(parents=True, exist_ok=True)
 
         self._type = vectorstore_type
         self.output_path = output_path
-        self.embbeding = embbeding
+        self.embedding = embedding
         self.db = None
         self.debug = debug
 
@@ -63,7 +63,7 @@ class VectorStore():
         if self.debug: pp.printy("Load Data base....")
         try:
             if "faiss" in self._type:
-                self.db = self.class_vector.from_documents(documents = docs, embbeding = self.embbeding)
+                self.db = self.class_vector.from_documents(documents = docs, embedding = self.embedding)
         except Exception as e:
             print(e)
             raise Exception("Error load Data base vector store")
@@ -87,7 +87,7 @@ class VectorStore():
         if self.debug: pp.printy("Load Data base....")
         try:
             if "faiss" in self._type:
-                self.db = self.class_vector.deserialize_from_bytes(serialized = load_pickle(pkl_path), embbeding = self.embbeding)
+                self.db = self.class_vector.deserialize_from_bytes(serialized = load_pickle(pkl_path), embedding = self.embedding)
         except Exception as e:
             print(e)
             raise Exception("Error load Data base vector store")
