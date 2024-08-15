@@ -41,6 +41,7 @@ class VectorStore():
         self.output_path = output_path
         self.embbeding = embbeding
         self.db = None
+        self.debug = debug
 
         if debug:
             pp.printy("----------------")
