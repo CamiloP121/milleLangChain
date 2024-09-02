@@ -35,7 +35,7 @@ class ChatLLM:
             pp.printy("--- LLMs ---")
             print("set: ", llm_type)
 
-      self.name_model = llm_type; self.flag_rag = rag
+      self.name_model = llm_type; self.flag_rag = rag,; self.debug = debug,
 
       allowed_types = ["ollama", "openia", "groq"]
 
