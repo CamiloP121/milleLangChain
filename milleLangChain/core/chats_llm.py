@@ -107,7 +107,7 @@ class ChatLLM:
       input = {"messages": messages}
       
       if self.flag_rag:
-         assert docs is None, "Don't have docs"
+         assert not docs is None, "Don't have docs"
          input["context"] = docs
 
       try:
