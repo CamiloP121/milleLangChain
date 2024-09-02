@@ -1,7 +1,7 @@
 from langchain_community.chat_models import ChatOllama
 from langchain_openai import ChatOpenAI
 from langchain_groq import ChatGroq
-from milleLangChain.utils.CustomOllama import Ollama
+from langchain_community.chat_models import ChatOllama
 
 from langchain_core.prompts.chat import (
     ChatPromptTemplate,
@@ -41,7 +41,7 @@ class ChatLLM:
 
       if "ollama" in llm_type:
          if not model: model = "llama3:8b"
-         self.model = Ollama(model=model, base_url=url)
+         self.model = ChatOllama(model=model, base_url=url)
       elif "openia" in llm_type:
          assert key is not None and key != "", "OpenAI API key is required for 'open_ia' llm type."
          if not model: model = "gpt-3.5-turbo-16k"
