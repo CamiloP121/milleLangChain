@@ -1,14 +1,12 @@
 from langchain_community.chat_models import ChatOllama
 # from langchain_anthropic import ChatAnthropic
-from langchain_openai import ChatOpenAI
-from langchain_groq import ChatGroq
-
-from milleLangChain.utils.CustomOllama import Ollama
+from langchain_openai import OpenAI
+from langchain_ollama.llms import OllamaLLM
 
 from milleLangChain.utils import print_helpers as pp
 
 
-class LLM():
+class LLM:
    def __init__(self, llm_type:str = "open_ia", key: str = None, model: str = None ,temperature:int = 0.7, debug:bool = False, url: str = None) -> None:
       """
       LLM class for initializing and managing different types of language models.
@@ -26,18 +24,15 @@ class LLM():
             pp.printy("--- LLMs ---")
             print("set: ", llm_type)
 
-      allowed_types = ["ollama", "openia", "groq"]
+      allowed_types = ["ollama", "openia"]
 
       if "ollama" in llm_type:
          if not model: model = "llama3:8b"
-         self.model = Ollama(model=model, base_url=url)
+         self.model = OllamaLLM(model=model, base_url=url)
       elif "openia" in llm_type:
          assert key is not None and key != "", "OpenAI API key is required for 'open_ia' llm type."
          if not model: model = "gpt-3.5-turbo-16k"
-         self.model = ChatOpenAI(openai_api_key=key, model_name=model, temperature=temperature)
-      elif "groq" in llm_type:
-         if not model: model = "Llama3-8B-8k"
-         self.model = ChatGroq(api_key=key, model=model, temperature=temperature)
+         self.model = OpenAI(openai_api_key=key, model_name=model, temperature=temperature)
       elif "anthropic" in llm_type:
          assert key is not None and key != "", "Anthropic API key is required for 'anthropic' llm type."
          raise Exception("Not implemented yet Anthropic LLM")
@@ -50,7 +45,7 @@ class LLM():
       if debug:
          pp.printy("----------------")
 
-   def invoke(self, text, return_text_only=True):
+   def invoke(self, text):
       """
       Invokes the language model with the provided text and returns the response.
       This method sends a text prompt to the language model and returns either the full response 
@@ -73,13 +68,5 @@ class LLM():
             print(e)
             raise Exception("Error in invoke model")
       
-
-      if return_text_only:
-         if "ollama" in self.name_model: r = response
-         else: r = response.content
-      else: 
-         if "ollama" in self.name_model: pp.printy("Warning: Ollama only have text mode")
-         r = response
-      
-      return r
+      return response
       

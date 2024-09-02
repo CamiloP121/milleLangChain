@@ -1,4 +1,4 @@
-class SimpleRetriever():
+class Retriever():
    def __init__(self, vectorstore: object, search_type:str = "similarity", search_kwargs:dict = {}):
       if "faiss" in vectorstore._type:
          self.retriever = vectorstore.db.as_retriever(search_type = search_type,
@@ -12,7 +12,4 @@ class SimpleRetriever():
          raise Exception("Error apply retriever search")
       
       return result
-         
-class MultiRetriever():
-   pass
       
