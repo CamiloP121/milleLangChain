@@ -86,7 +86,23 @@ class ChatLLM:
 
       return chain
    
-   def invoke(self, messages, docs = None):
+   def invoke(self, text):
+      try:
+         if self.debug:
+            print("\n****** Start CHAT LLM model ******")
+         
+         result = self.model.invoke( text )
+
+         if self.debug:
+            print("****** Finish CHAT LLM model ******")
+         return result
+
+      except Exception as e:
+         print(e)
+         raise Exception("Error in apply llm model.")
+
+   
+   def invoke_chain(self, messages, docs = None):
       
       input = {"messages": messages}
       
@@ -106,5 +122,5 @@ class ChatLLM:
 
       except Exception as e:
          print(e)
-         raise Exception("Error in apply Chat Validate model.")
+         raise Exception("Error in apply Chain model.")
       
