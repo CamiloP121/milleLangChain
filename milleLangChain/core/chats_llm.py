@@ -66,7 +66,7 @@ class ChatLLM:
       assert "{messages}" in self.template_contextBot, "Missing '{messages}' at the system prompt"
 
       if self.flag_rag:
-         assert "<context>{context}</context>" in self.template_contextBot, "Missing '{context}' at the system prompt"
+         assert "{context}" in self.template_contextBot, "Missing '{context}' at the system prompt"
 
       self.chain = self.bot_setup(rag = self.flag_rag,
                                   system = self.template_contextBot, 
