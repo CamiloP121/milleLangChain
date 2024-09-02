@@ -60,7 +60,7 @@ class ChatLLM:
 
       assert (prompt_system and not file_system) or (not prompt_system and file_system), "Only one of the system prompts should be assigned"
       
-      if prompt_system: self.template_contextBot = load_prompt(file = file_system)
+      if file_system: self.template_contextBot = load_prompt(file = file_system)
       else:  self.template_contextBot = prompt_system
 
       assert "{messages}" in self.template_contextBot, "Missing '{messages}' at the system prompt"
