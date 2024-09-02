@@ -75,7 +75,7 @@ class ChatLLM:
       if debug:
          pp.printy("----------------")
 
-   def bot_setup(system:str, rag:bool, llm):
+   def bot_setup(self, system:str, rag:bool, llm):
       
       prompt = ChatPromptTemplate.from_messages(
          [("system", system),
