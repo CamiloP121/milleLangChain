@@ -1,6 +1,6 @@
 from milleLangChain.utils.helpers import load_prompt
 from milleLangChain.utils import print_helpers as pp
-
+from pydantic import BaseModel, Field, create_model
 import time
 
 
@@ -35,3 +35,23 @@ class LLM_Clasify:
             r = "indefinido"
         """
         print(result)
+
+class StructuredLLM:
+    def __init__(self, model:object, outputs: dict, name_parser:str = "StructureLLM"):
+        self.name = name_parser
+        try: 
+            self.parser = create_model(name_parser, **outputs)
+        except Exception as e:
+            print(e)
+            print("Error in generate Structured LLM - Load BaseModel")
+
+        self.chain = model.with_structured_output(self.parser)
+        
+    def apply(self, text):
+        try:
+            response = self.chain.invoke( text )
+        except Exception as e:
+            print(e)
+            print(f"Error in Apply {self.name} Structured LLM")
+
+        return response

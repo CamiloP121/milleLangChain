@@ -95,3 +95,7 @@ class VectorStore():
             raise Exception("Error load Data base vector store")
 
         if self.debug: pp.printg("Completed load Data base")
+
+    def add(self, docs):
+        #self
+        pass
