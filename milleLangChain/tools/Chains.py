@@ -8,8 +8,8 @@ import time
 class LLM_Clasify:
     def __init__(self, llm, file_context:str, context: str, intentions:list, debug:bool = False) -> None:
         
-        if file_context: self.template_contextBot = PromptTemplate(load_prompt(file = file_context)) + " {text}"
-        if context: self.template_contextBot = PromptTemplate(context) + " {text}"
+        if file_context: self.template_contextBot = PromptTemplate(load_prompt(file = file_context) + " {text}")
+        if context: self.template_contextBot = PromptTemplate(context + " {text}")
         self.intentions = intentions
 
         self.chain = llm | self.template_contextBot
