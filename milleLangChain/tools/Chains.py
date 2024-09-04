@@ -24,7 +24,7 @@ class LLM_Clasify:
             print("\n****** Start CHAT LLM model ******")
         
         t1_llm = time.time()
-        result = self.chain.invoke( text )
+        result = self.chain.invoke( {"text": text} )
         t2_llm = time.time()
 
         time_llm = round(t2_llm - t1_llm,3)
