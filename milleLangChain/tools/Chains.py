@@ -1,5 +1,6 @@
 from milleLangChain.utils.helpers import load_prompt
 from milleLangChain.utils import print_helpers as pp
+from langchain_core.prompts import PromptTemplate
 from pydantic import BaseModel, Field, create_model
 import time
 
@@ -7,8 +8,8 @@ import time
 class LLM_Clasify:
     def __init__(self, llm, file_context:str, context: str, intentions:list, debug:bool = False) -> None:
         
-        if file_context: self.template_contextBot = load_prompt(file = file_context)
-        if context: self.template_contextBot = context
+        if file_context: self.template_contextBot = PromptTemplate(load_prompt(file = file_context)) + " {text}"
+        if context: self.template_contextBot = PromptTemplate(context) + " {text}"
         self.intentions = intentions
 
         self.chain = llm | self.template_contextBot
